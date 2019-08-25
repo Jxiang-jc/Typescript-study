@@ -59,7 +59,7 @@ service.interceptors.response.use((response: AxiosResponse) => {
                 errMsg = 'HTTP版本不受支持';
                 break;
             default:
-                errMsg = 'err.response.data.msg';
+                errMsg = err.response.data.msg;
                 break;
         }
     } else {
