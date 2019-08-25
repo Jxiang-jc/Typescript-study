@@ -65,4 +65,8 @@ service.interceptors.response.use((response: AxiosResponse) => {
     } else {
         errMsg = err;
     }
+    Message.error(errMsg);
+    return Promise.reject(errMsg);
 })
+
+export default service;
