@@ -7,7 +7,7 @@
                     <span>越努力越幸运</span>
                 </div>
                 <div class="detail">
-                    <span>Jxiang 别等到来不及时才来后悔。just do it</span>
+                    <span>别等到来不及时才来后悔。just do it</span>
                 </div>
             </div>
             <!-- 插槽 -->
@@ -31,7 +31,7 @@ export default class LayoutHeader extends Vue {}
 .login-page {
     width: 100%;
     height: 100%;
-    background-image: url(../../assets/login-back.svg);
+    background-image: url('~@/assets/login-back.png');
     background-repeat: no-repeat;
     background-position: center 110px;
     background-size: 100%;

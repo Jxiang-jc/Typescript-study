@@ -34,12 +34,12 @@
 
                 <!-- 登录button -->
                 <el-form-item>
-                    <el-bottom
+                    <el-button
                         :loading="isLogin"
                         @click.native.prevent="handleSubmit"
                         type="primary"
                         style="width:100%;"
-                    >登录</el-bottom>
+                    >登录</el-button>
                 </el-form-item>
 
                 <!-- 7天登录和忘记密码 -->
@@ -106,6 +106,9 @@ export default class Login extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.login {
+    height: 100%;
+}
 .title {
     margin: 0px auto 40px auto;
     text-align: center;
