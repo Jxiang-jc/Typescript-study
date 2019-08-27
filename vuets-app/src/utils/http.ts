@@ -10,7 +10,7 @@ import router from '@/router';
 
 // 创建axios的实例
 const service = axios.create({
-    timeout: 10000 // 超出时间
+    timeout: 60000 // 超出时间
 });
 
 // 请求拦截

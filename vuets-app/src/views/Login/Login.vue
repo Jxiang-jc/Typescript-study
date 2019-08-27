@@ -65,14 +65,15 @@ export default class Login extends Vue {
 
     @Provide() isLogin: boolean = false;
     @Provide() ruleForm: {
-        username: String;
-        pwd: String;
+        username: string;
+        pwd: string;
         autoLogin: boolean;
     } = {
         username: '',
         pwd: '',
         autoLogin: true // 是否自动登录
     };
+
     @Provide() rules = {
         username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
         pwd: [{ required: true, message: '请输入密码', trigger: 'blur' }]
@@ -81,7 +82,7 @@ export default class Login extends Vue {
     handleSubmit(): void {
         (this.$refs['ruleForm'] as any).validate((valid: boolean) => {
             if (valid) {
-                // console.log('校验通过');
+                // console.log('校验通过')
                 this.isLogin = true;
                 (this as any).$axios
                     .post('/api/users/login', this.ruleForm)
@@ -96,7 +97,8 @@ export default class Login extends Vue {
                         // 登录成功 跳转 /
                         this.$router.push('/');
                     })
-                    .catch(() => {
+                    .catch((err: any) => {
+                        console.log('TCL: Login -> err', err);
                         this.isLogin = false;
                     });
             }
