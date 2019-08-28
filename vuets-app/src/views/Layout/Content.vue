@@ -91,7 +91,7 @@ export default class Content extends Vue {
         }
         .content {
             padding: 10px;
-            height: calc(100% - 54px);
+            height: calc(100% - 55px);
             box-sizing: border-box;
         }
     }

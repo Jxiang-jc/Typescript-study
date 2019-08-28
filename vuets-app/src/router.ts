@@ -43,6 +43,33 @@ export const asyncRouterMap = [
         hidden: false,
         meta: { title: '找回密码' },
         component: () => import('@/views/Login/Password.vue')
+    },
+    {
+        path: '/dataManage',
+        hidden: true,
+        meta: { title: '数据管理', icon: 'fa fa-database' },
+        component: Layout,
+        redirect: '/tableData',
+        children: [
+            {
+                path: '/tableData',
+                name: 'tableData',
+                meta: { title: '表格管理', icon: 'fa fa-table' },
+                component: () => import('@/views/DataManage/TableData.vue')
+            },
+            {
+                path: '/chartsData',
+                name: 'chartsData',
+                meta: { title: '图标管理', icon: 'fa fa-bar-chart' },
+                component: () => import('@/views/DataManage/ChartsData.vue')
+            },
+            {
+                path: '/formData',
+                name: 'formData',
+                meta: { title: '表单管理', icon: 'fa fa-file-text-o', roles: ['admin', 'editor'] },
+                component: () => import('@/views/DataManage/FormData.vue')
+            }
+        ]
     }
 ]
 
