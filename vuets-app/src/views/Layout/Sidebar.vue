@@ -28,7 +28,10 @@
                             :key="child.name"
                         >
                             <i v-if="child.meta.icon" :class="child.meta.icon"></i>
-                            <span v-if="child.meta">{{ child.meta.title }}</span>
+                            <span
+                                v-if="child.meta&&child.meta.title"
+                                slot="title"
+                            >{{ child.meta.title }}</span>
                         </el-menu-item>
                     </el-submenu>
                 </div>
@@ -47,7 +50,7 @@ export default class SideBar extends Vue {
     @Getter('routers') getRouters: any;
 
     created() {
-        console.log(123, this.$router);
+        // console.log(123, this.$router);
     }
 }
 </script>

@@ -70,6 +70,50 @@ export const asyncRouterMap = [
                 component: () => import('@/views/DataManage/FormData.vue')
             }
         ]
+    },
+    {
+        path: '/userManage',
+        name: 'userManage',
+        component: Layout,
+        hidden: true,
+        ridirect: '/accountData',
+        children: [
+            {
+                path: '/accoountData',
+                name: 'accountData',
+                meta: {
+                    title: '账户管理',
+                    icon: 'fa fa-user-plus',
+                    roles: ['admin']
+                },
+                component: () => import('@/views/UserManage/AccountData.vue')
+            }
+        ]
+    },
+    {
+        path: '/user',
+        component: Layout,
+        redirect: '/userInfo',
+        hidden: false,
+        children: [
+            {
+                path: '/userInfo',
+                name: 'userInfo',
+                meta: { title: '个人中心' },
+                component: () => import('@/views/UserManage/UserInfo.vue')
+            }
+        ]
+    },
+    {
+        path: '/404',
+        name: '404',
+        hidden: false,
+        meta: { title: '404' },
+        component: () => import('@/views/404.vue')
+    },
+    {
+        path: '*',
+        redirect: '/404'
     }
 ]
 
@@ -85,11 +129,33 @@ router.beforeEach((to: any, from: any, next: any) => {
         next();
     } else {
         if (isLogin) {
-            next();
+            const decoded: any = jwt_decode(localStorage.tsToken);
+            const { key } = decoded;
+            // 权限判断
+            if (hasPermission(key, to)) {
+                next();
+            } else {
+                next('/404')
+            }
         } else {
-            next('/404'); // 没有权限登录
+            next('/login'); // 没有权限登录
         }
     }
 })
+
+/* 
+ * 判断是否有权限
+ * @param roles 当前角色
+ * @param route 当前路由对象 
+ * */
+function hasPermission(roles: string, route: any): boolean {
+    if (route.meta && route.meta.roles) {
+        // 如果meta.roles是否包含角色的key值，如果包含就是有权限，否则伍权限
+        return route.meta.roles.indexOf(roles) > -1
+    } else {
+        // 默认不设置有权限
+        return true;
+    }
+}
 
 export default router;

@@ -44,7 +44,7 @@ export default class Errors extends Vue {}
             .link {
                 color: #5cacee;
                 font-size: 20px;
-                cursor: pointer;puchi
+                cursor: pointer;
             }
         }
     }

@@ -117,7 +117,7 @@ export default class EditDialog extends Vue {
     }
 
     created() {
-        console.log(this.dialogVisible, this.form);
+        // console.log(this.dialogVisible, this.form);
     }
 }
 </script>
