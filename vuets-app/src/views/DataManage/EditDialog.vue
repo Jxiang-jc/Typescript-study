@@ -9,34 +9,34 @@
         <el-form
             :rules="rules"
             ref="ruleForm"
-            :model="form"
+            :model="newForm"
             label-width="100px"
             size="small"
             class="form-box"
         >
             <el-form-item label="课程名称" prop="title">
-                <el-input v-model="form.title" placeholder="请输入课程名称"></el-input>
+                <el-input v-model="newForm.title" placeholder="请输入课程名称"></el-input>
             </el-form-item>
             <el-form-item label="课程等级" prop="level">
-                <el-select v-model="form.level" placeholder="请选择课程等级">
+                <el-select v-model="newForm.level" placeholder="请选择课程等级">
                     <el-option label="初级" value="初级"></el-option>
                     <el-option label="中级" value="中级"></el-option>
                     <el-option label="高级" value="高级"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="报名人数" prop="count">
-                <el-input v-model="form.count" placeholder="请输入报名人数"></el-input>
+                <el-input v-model="newForm.count" placeholder="请输入报名人数"></el-input>
             </el-form-item>
             <el-form-item label="上线时间" prop="date">
                 <el-date-picker
                     type="date"
                     placeholder="选择日期"
-                    v-model="form.date"
+                    v-model="newForm.date"
                     value-format="yyyy-MM-dd"
                 ></el-date-picker>
             </el-form-item>
             <el-form-item label="技术栈" prop="type">
-                <el-radio-group v-model="form.type">
+                <el-radio-group v-model="newForm.type">
                     <el-radio label="vue" name="type"></el-radio>
                     <el-radio label="react" name="type"></el-radio>
                     <el-radio label="nodejs" name="type"></el-radio>
@@ -97,6 +97,7 @@ export default class EditDialog extends Vue {
             }
         ]
     };
+    @Provide() newForm: object = Object.assign({}, this.form);
 
     submitForm(formName: any) {
         (this.$refs[formName] as any).validate((valid: boolean) => {
